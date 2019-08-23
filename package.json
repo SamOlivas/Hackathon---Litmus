@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow-models/toxicity": "^1.1.1",
+    "@tensorflow/tfjs": "^1.2.8",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
+    "pg": "^7.12.1",
+    "psql": "0.0.1",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "sequelize": "^5.16.0"
   }
 }
