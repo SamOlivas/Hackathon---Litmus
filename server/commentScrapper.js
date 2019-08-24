@@ -18,7 +18,11 @@ const urlsFromSubreddit = async(subredditURL) => {
 
 // Grabs all tier 1 comment from post, returns as array
 const commentsFromThread = async(threadURL) => {
-  const response = await axios.get('www.reddit.com'+threadURL+'.json');
+  let urlFormatted = 'www.reddit.com/r/therewasanattempt/comments/cuszih/to_steal_egg_from_the_humans/.json'
+  console.log(urlFormatted)
+  let response = await axios.get(urlFormatted);
+  console.log('response.data')
+  console.log('response.data[1].data.children')
   const threadComments = response.data[1].data.children
   const commentArray = threadComments.map( (comment) => {
     comment.data.body
@@ -30,10 +34,16 @@ const commentsFromThread = async(threadURL) => {
 const commentsFromSubredit = async(subredditURL) => {
   const allComments = [];
   const urls = await urlsFromSubreddit(subredditURL);
-  console.log(urls)
-
+  //console.log(urls)
+  urls.forEach( async (url) => {
+    allComments.push( await commentsFromThread(url))
+  });
+  console.log(allComments);
+  return allComments;
 };
 
-commentsFromSubredit('https://www.reddit.com/r/therewasanattempt/')
+//V something not working with this func currently//
+commentsFromThread()
+//commentsFromSubredit('https://www.reddit.com/r/therewasanattempt/')
 
 module.exports = commentsFromThread;
